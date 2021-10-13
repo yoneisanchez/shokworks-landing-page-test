@@ -6,71 +6,57 @@ import icon from '../resource/icon-1.png';
 
 const Landing = () => {
 
-    const [news, setNews] = useState([
-        {
-            img:icon,
-            title:'Great Communication',
-            description:'We maintain 24/7 communication to cover all your need for the project'
-        },
-        {
-            img:icon,
-            title:'Great Communication',
-            description:'We maintain 24/7 communication to cover all your need for the project'
-        },
-        {
-            img:icon,
-            title:'Great Communication',
-            description:'We maintain 24/7 communication to cover all your need for the project'
-        },
-        {
-            img:icon,
-            title:'Great Communication',
-            description:'We maintain 24/7 communication to cover all your need for the project'
-        },
-        {
-            img:icon,
-            title:'Great Communication',
-            description:'We maintain 24/7 communication to cover all your need for the project'
-        },
-    ]);
+    const [news, setNews] = useState(null);
 
     const getNews = async () => {
-        let url = ''
-        var response = await axios.post(url, {
-            apiKey: ''
-           });
-        console.log({response})
+        let url = 'https://newsapi.org/v2/everything?q=Apple&from=2021-10-13&sortBy=popularity&apiKey=29761c5850744c669e62fa94d3991d63'
+        var response = await axios.get(url);
+
+        if (response?.status === 200 && response?.data && response.data.totalResults > 0) {
+            let data = response.data.articles.map(({ title, description, urlToImage }) => ({
+                title,
+                description,
+                img: urlToImage
+            })).slice(0, 10)
+
+            setNews(data)
+        }
     }
 
     useEffect(() => {
         getNews()
-    },[])
+    }, [])
 
-    return ( 
+    return (
         <div>
-            <h1 className="subtitle text-center" style={{paddingBottom:81}}>What is the <br /> <span className="emphasis">Speciality Of Us?</span></h1>
-            <Carousel>
-                {
-                    news.map((x,i) => (
-                        <div key={`item-carousel-${i}`}>
-                        <div className="item">
-                            <div className="card card-category">
-                                <img
-                                    className="card-icon img-rounded"
-                                    src={x.img}
-                                />
-                                <h3 className="card-title">{x.title}</h3>
-                                <p className="card-description">
-                                    {x.description}
-                                </p>
-                            </div>
-                        </div>
-                        </div>
-                    ))
-                }
-            </Carousel>
+            <h1 className="subtitle text-center">What is the <br /> <span className="emphasis">Speciality Of Us?</span></h1>
+            {
+                news && (
+                    <Carousel>
+                        {
+                            news.map((x, i) => (
+                                <div key={`item-carousel-${i}`}>
+                                    <div className="item">
+                                        <div className="card card-category">
+                                            <img
+                                                className="card-icon img-rounded"
+                                                src={x.img}
+                                            />
+                                            <h3 className="card-title">{x.title}</h3>
+                                            <p className="card-description">
+                                                {x.description}
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            ))
+                        }
+                    </Carousel>
+                )
+            }
+
         </div>
-     );
+    );
 }
- 
+
 export default Landing;

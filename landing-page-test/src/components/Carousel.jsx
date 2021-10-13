@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import CarouselComponent from 'react-elastic-carousel'
-
+import arrowLeft from '../resource/arrow-left.svg';
+import arrowright from '../resource/arrow-right.svg';
 
 const Carousel = ({ children, ...props }) => {
    
@@ -16,7 +17,7 @@ const Carousel = ({ children, ...props }) => {
           className="carousel"
             itemsToShow={3}
             pagination={false}
-            itemPadding={[20, 18]}
+            itemPadding={[80, 18]}
             breakPoints={[
                 { width: 1, itemsToShow: 1 },
                 { width: 850, itemsToShow: 2},
@@ -34,10 +35,11 @@ const Carousel = ({ children, ...props }) => {
 
             <div className="carousel-actions">
                 <button className="action" onClick={hendlePrev}>
-                    {"<"}
+                    <img src={arrowLeft} />
                 </button>
                 <button className="action" onClick={handleNext}>
-                    {">"}
+                <img src={arrowright} />
+
                 </button>
             </div>
         </div>
