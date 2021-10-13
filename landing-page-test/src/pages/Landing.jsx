@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import Carousel from '../components/Carousel';
 import axios from 'axios';
 import icon from '../resource/icon-1.png';
+// import Carousel from 'react-elastic-carousel'
 
 const Landing = () => {
 
@@ -50,7 +51,8 @@ const Landing = () => {
             <h1 className="subtitle text-center" style={{paddingBottom:81}}>What is the <br /> <span className="emphasis">Speciality Of Us?</span></h1>
             <Carousel>
                 {
-                    news.map(x => (
+                    news.map((x,i) => (
+                        <div key={`item-carousel-${i}`}>
                         <div className="item">
                             <div className="card card-category">
                                 <img
@@ -62,6 +64,7 @@ const Landing = () => {
                                     {x.description}
                                 </p>
                             </div>
+                        </div>
                         </div>
                     ))
                 }

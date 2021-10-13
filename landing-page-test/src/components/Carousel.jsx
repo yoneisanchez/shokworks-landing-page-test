@@ -1,36 +1,42 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
+import CarouselComponent from 'react-elastic-carousel'
 
-const Carousel = ({ children }) => {
-    const [show, setShow] = useState([])
 
-    const initCarousel = () => {
-        let elements = Array(children.length).fill(0).map((x, i) => i).slice(0, 3)
-        setShow(elements)
-    }
+const Carousel = ({ children, ...props }) => {
+   
+    const ref = useRef(null)
 
-    useEffect(() => {
+    const handleNext =() => ref.current.slideNext()
 
-        if (!children) return;
-
-        initCarousel()
-
-    }, [children])
-
-    return (
-        <div className="carousel">
-            <div>
-                <div className="carousel-container">
+    const hendlePrev = () => ref.current.slidePrev()
+  return (
+        <div>
+          <CarouselComponent 
+          ref={ref}
+          className="carousel"
+            itemsToShow={3}
+            pagination={false}
+            itemPadding={[20, 18]}
+            breakPoints={[
+                { width: 1, itemsToShow: 1 },
+                { width: 850, itemsToShow: 2},
+                { width: 1150, itemsToShow: 3, itemsToScroll: 2 },
+                { width: 1450, itemsToShow: 4 },
+                { width: 1750, itemsToShow: 5 },
+              ]}
+              showArrows={false}
+              {...props} >
                     {
                         children
                     }
-                </div>
-            </div>
+
+        </ CarouselComponent>
 
             <div className="carousel-actions">
-                <button className="action">
+                <button className="action" onClick={hendlePrev}>
                     {"<"}
                 </button>
-                <button className="action">
+                <button className="action" onClick={handleNext}>
                     {">"}
                 </button>
             </div>

@@ -52,11 +52,10 @@
   width: 100%;
 }
 
-.carousel-container > .item{
+.carousel .item{
   padding: 0 18px;
-  width: 423px;
+  /* width: 423px; */
 height: 532px;
-display: contents;
 }
 
 /*card styles---------------------------------*/
@@ -90,5 +89,4 @@ display: contents;
   box-shadow: 0px 10px 30px #99999933;
 border-radius: 8px;
 opacity: 1;
-width: 100%;
 }
