@@ -48,7 +48,24 @@ const Landing = () => {
     return ( 
         <div>
             <h1 className="subtitle text-center" style={{paddingBottom:81}}>What is the <br /> <span className="emphasis">Speciality Of Us?</span></h1>
-            <Carousel data={news}/>
+            <Carousel>
+                {
+                    news.map(x => (
+                        <div className="item">
+                            <div className="card card-category">
+                                <img
+                                    className="card-icon img-rounded"
+                                    src={x.img}
+                                />
+                                <h3 className="card-title">{x.title}</h3>
+                                <p className="card-description">
+                                    {x.description}
+                                </p>
+                            </div>
+                        </div>
+                    ))
+                }
+            </Carousel>
         </div>
      );
 }
