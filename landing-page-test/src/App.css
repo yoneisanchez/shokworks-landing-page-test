@@ -66,6 +66,7 @@ body{
 .carousel .item{
   padding: 0 18px;
   height: 100%;
+  width: 426px;
 }
 
 .rec.rec-item-wrapper {
@@ -104,4 +105,16 @@ body{
 border-radius: 8px;
 opacity: 1;
 height: 100%;
+}
+
+
+@media (max-width:471px){
+  .carousel .item{
+    width: auto;
+  }
+
+  .card-category .card-icon {
+    width: 175px;
+    height: 175px;
+}
 }
