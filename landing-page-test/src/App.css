@@ -10,6 +10,10 @@ body{
   outline: none;
 }
 
+*:disabled{
+  cursor:no-drop !important;
+}
+
 .img-rounded{
   border-radius: 50%;
 }
@@ -72,6 +76,15 @@ body{
 .rec.rec-item-wrapper {
   height: 100%;
 }
+
+.rec-carousel-item-hidden .rec.rec-item-wrapper{
+  padding: 100px 18px !important;
+}
+
+.rec-carousel-item-hidden .rec.rec-item-wrapper .card-category .card-icon{
+  filter: blur(2px) !important;
+}
+
 
 /*card styles---------------------------------*/
 
